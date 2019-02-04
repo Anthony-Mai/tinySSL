@@ -941,6 +941,8 @@ void BN_ShiftR(BN* pX, uint b)
 {
     uint    i;
 
+    if ((b &= 31) == 0) return;
+
     for (i=0; i<BN_SIZE-1; i++)
     {
         pX->data[i] = (pX->data[i]>>b) | (pX->data[i+1]<<(32-b));
